@@ -10,7 +10,7 @@ export class main extends Component {
             cityName: '',
             cityInfo: {},
             showData: false,
-        }
+            mapData:{},        }
     }
 
     getCityName = (e) => {
@@ -23,6 +23,7 @@ export class main extends Component {
     CityData = async (e) => {
         e.preventDefault();
         const data = await axios.get(`https://us1.locationiq.com/v1/search.php?key=pk.9c870abbddee1186d4eedf621331a2b2&q=${this.state.cityName}&format=json`)
+
         // console.log(data);
         this.setState({
             cityInfo: data.data[0],
