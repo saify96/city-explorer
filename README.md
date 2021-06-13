@@ -1,21 +1,32 @@
 # Project Name
 
 **Author**: Mohammad Al Saify
+
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+website to take the city name and give the location with details to the user
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+take the input by form
+get the information based on the input
+show the information
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+React, Bootstrap, CSS
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+13-06-2021 6:10pm Application now able to take the city name and return the lan,lon and the map img.
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+Anas Al Ramahi
+Majd Khasawneh
+
+
+Name of feature: Get info from API
+
+Estimate of time needed to complete: 2 hours
+Start time: 2PM
+Finish time: 6:10PM
+
+Actual time needed to complete: 4 hours and a half
