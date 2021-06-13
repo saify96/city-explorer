@@ -9,7 +9,7 @@ export class ShowingInfo extends Component {
         return (
             <div>
                 <Container>
-                    <Card style={{ width: '18rem' }}>
+                    <Card style={{ width: '18rem' ,margin: '0 auto', color:'blue' }}>
                         <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=pk.9c870abbddee1186d4eedf621331a2b2&q&center=${this.props.cityInfo.lat},${this.props.cityInfo.lon}&zoom=20`}/>
                         <Card.Body>
                             <Card.Title>{this.props.cityInfo.display_name}</Card.Title>
