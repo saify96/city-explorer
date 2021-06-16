@@ -3,7 +3,8 @@ import CityForm from './CityForm'
 import ShowingInfo from './ShowingInfo'
 import axios from 'axios';
 import ErrorMsg from './ErrorMsg'
-
+import WeatherF from './WeatherF'
+import Movies from './Movies'
 
 export class main extends Component {
     constructor(props) {
@@ -15,6 +16,9 @@ export class main extends Component {
             mapData: {},
             showError: false,
             errorMsg: '',
+            weather: [],
+            movies: [],
+
         }
     }
 
@@ -26,22 +30,46 @@ export class main extends Component {
 
     CityData = async (e) => {
         e.preventDefault();
-        try {
-            const data = await axios.get(`https://us1.locationiq.com/v1/search.php?key=pk.9c870abbddee1186d4eedf621331a2b2&q=${this.state.cityName}&format=json`)
-            this.setState({
-                cityInfo: data.data[0],
-                showData: true,  
-                showError: false,
+        await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_api_key}&q=${this.state.cityName}&format=json`)
+            .then((response) => {
+                this.setState({
+                    cityInfo: response.data[0],
+                    showData: true,
+                    showError: false,
+                })
             })
-        }
-    catch(error) {
-        this.setState({
-            showError: true,
-            errorMsg: error.message,
-        })
-    }
-}
+            .catch((error) => {
+                this.setState({
+                    showError: true,
+                    errorMsg: error.message,
+                })
+            })
+        axios.get(`${process.env.REACT_APP_URL}/weather?lon=${this.state.cityInfo.lon}&lat=${this.state.cityInfo.lat}`)
+            .then((response) => {
+                this.setState({
+                    weather: response.data
+                })
+            })
+            .catch((error) => {
+                this.setState({
+                    showError: true,
+                    errorMsg: error.message,
+                })
+            })
+            axios.get(`${process.env.REACT_APP_URL}/movies?city=${this.state.cityName}`)
+            .then((response) => {
+                this.setState({
+                    movies: response.data
+                })
+           })
+            .catch((error) => {
+                this.setState({
+                    showError: true,
+                    errorMsg: error.message,
+                })
+            })
 
+    }
     render() {
         return (
             <div>
@@ -59,6 +87,12 @@ export class main extends Component {
                     <ErrorMsg
                         errorMsg={this.state.errorMsg}
                     />
+                }
+                {
+                    this.state.weather.map((item) => <WeatherF date={item.date} desc={item.desc} />)
+                }
+                {
+                    this.state.movies.map((item) => <Movies movies={item} />)
                 }
             </div>
         )
